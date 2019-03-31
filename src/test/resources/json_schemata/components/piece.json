@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Piece",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": ["bishop", "king", "knight", "pawn", "queen", "rook"]
+    },
+    "color": {
+      "$ref": "./color.json"
+    },
+    "position": {
+      "$ref": "./position.json"
+    },
+    "isChecked": {
+      "type": "boolean"
+    }
+  },
+  "required": ["type", "color", "position"],
+  "additionalProperties": false
+}

@@ -1,0 +1,297 @@
+[
+  {
+    "id": "forcedMateTree_WhiteMatesInOneWithRooks",
+    "name": "White checkmate in one move with rooks",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "G7"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "H7"
+          },
+          {
+            "type": "king",
+            "color": "white",
+            "position": "F2"
+          },
+          {
+            "type": "king",
+            "color": "black",
+            "position": "A8"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 2
+      },
+      "getResults": {
+        "G7-G8": {},
+        "H7-H8": {}
+      }
+    }
+  },
+  {
+    "id": "forcedMateTree_WhiteMatesInOneWithBishops",
+    "name": "White checkmate in one with bishops",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "king",
+            "color": "white",
+            "position": "A6"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "B1"
+          },
+          {
+            "type": "bishop",
+            "color": "white",
+            "position": "D6"
+          },
+          {
+            "type": "bishop",
+            "color": "white",
+            "position": "E6"
+          },
+          {
+            "type": "king",
+            "color": "black",
+            "position": "A8"
+          },
+          {
+            "type": "pawn",
+            "color": "black",
+            "position": "H2"
+          },
+          {
+            "type": "rook",
+            "color": "black",
+            "position": "H8"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 2
+      },
+      "getResults": {
+        "E6-D5": {}
+      }
+    }
+  },
+  {
+    "id": "forcedMateTree_WhiteMatesInOneLongerMatesExist",
+    "name": "White mates in one with rooks",
+    "description": "White mates in one with rooks. Mates in two are also possible but should not be in included in the result",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "king",
+            "color": "black",
+            "position": "A8"
+          },
+          {
+            "type": "king",
+            "color": "white",
+            "position": "H1"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "G7"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "H7"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 4
+      },
+      "getResults": {
+        "G7-G8": {},
+        "H7-H8": {}
+      }
+    }
+  },
+  {
+    "id": "forcedMateTree_WhiteMatesInTwo",
+    "name": "White mates in two",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "queen",
+            "color": "white",
+            "position": "F7"
+          },
+          {
+            "type": "pawn",
+            "color": "black",
+            "position": "B6"
+          },
+          {
+            "type": "king",
+            "color": "black",
+            "position": "C6"
+          },
+          {
+            "type": "queen",
+            "color": "black",
+            "position": "D6"
+          },
+          {
+            "type": "knight",
+            "color": "black",
+            "position": "G6"
+          },
+          {
+            "type": "pawn",
+            "color": "black",
+            "position": "A5"
+          },
+          {
+            "type": "pawn",
+            "color": "black",
+            "position": "E5"
+          },
+          {
+            "type": "pawn",
+            "color": "white",
+            "position": "E4"
+          },
+          {
+            "type": "pawn",
+            "color": "white",
+            "position": "B3"
+          },
+          {
+            "type": "king",
+            "color": "white",
+            "position": "E3"
+          },
+          {
+            "type": "pawn",
+            "color": "white",
+            "position": "C2"
+          },
+          {
+            "type": "bishop",
+            "color": "white",
+            "position": "E2"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 4
+      },
+      "getResults": {
+        "E2-B5": {
+          "C6-C5": {
+            "F7-C4": {}
+          },
+          "C6-B5": {
+            "F7-C4": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "forcedMateTree_WhiteMatesInOneWithPromotable",
+    "name": "White mates in one with promotable piece",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "king",
+            "color": "black",
+            "position": "A8"
+          },
+          {
+            "type": "king",
+            "color": "white",
+            "position": "B6"
+          },
+          {
+            "type": "pawn",
+            "color": "white",
+            "position": "H7"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 2
+      },
+      "getResults": {
+        "H7-H8=Q": {},
+        "H7-H8=R": {}
+      }
+    }
+  },
+  {
+    "id": "forcedMateTree_BlackMatesBeforeWhite",
+    "name": "Black mates before white",
+    "data": {
+      "chessTree": {
+        "type": "forcedMateTree",
+        "board": [
+          {
+            "type": "king",
+            "color": "black",
+            "position": "A8"
+          },
+          {
+            "type": "pawn",
+            "color": "black",
+            "position": "D7"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "E7"
+          },
+          {
+            "type": "rook",
+            "color": "white",
+            "position": "D6"
+          },
+          {
+            "type": "knight",
+            "color": "black",
+            "position": "F4"
+          },
+          {
+            "type": "knight",
+            "color": "black",
+            "position": "G4"
+          },
+          {
+            "type": "rook",
+            "color": "black",
+            "position": "F2"
+          },
+          {
+            "type": "king",
+            "color": "white",
+            "position": "H1"
+          }
+        ],
+        "startingColor": "white",
+        "depth": 4
+      },
+      "getResults": {}
+    }
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chess Tree",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": ["forcedMateTree", "gameTree"]
+    },
+    "board": {
+      "$ref": "./board.json"
+    },
+    "startingColor": {
+      "$ref": "./color.json"
+    },
+    "depth": {
+      "type": "integer"
+    }
+  },
+  "required": ["type", "board", "startingColor", "depth"],
+  "additionalProperties": false
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "bishop_OneAtCentralPosition",
+    "name": "A single bishop at a central position",
+    "data": {
+      "board": [
+        {
+          "color": "black",
+          "type": "bishop",
+          "position": "D4"
+        }
+      ],
+      "availableMoves": {
+        "D4": ["A1", "B2", "C3", "E5", "F6", "G7", "H8", "A7", "B6", "C5", "E3", "F2", "G1"]
+      }
+    }
+  },
+  {
+    "id": "bishop_OneAtCorner",
+    "name": "A single bishop at a corner",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "bishop",
+          "position": "A1"
+        }
+      ],
+      "availableMoves": {
+        "A1": ["B2", "C3", "D4", "E5", "F6", "G7", "H8"]
+      }
+    }
+  },
+  {
+    "id": "bishop_TwoCanCaptureEachOther",
+    "name": "Two bishops that can capture each other",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "bishop",
+          "position": "F3"
+        },
+        {
+          "color": "black",
+          "type": "bishop",
+          "position": "D5"
+        }
+      ],
+      "availableMoves": {
+        "F3": ["D1", "E2", "G4", "H5", "D5", "E4", "G2", "H1"],
+        "D5": ["A2", "B3", "C4", "E6", "F7", "G8", "A8", "B7", "C6", "E4", "F3"]
+      }
+    }
+  }
+]

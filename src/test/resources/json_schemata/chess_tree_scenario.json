@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chess Tree Scenario",
+  "$ref": "components/scenario.json",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "chessTree": {
+          "$ref": "./components/chess_tree.json"
+        },
+        "getResults": {
+          "type": "object"
+        }
+      },
+      "required": ["chessTree"],
+      "additionalProperties": false
+    }
+  }
+}

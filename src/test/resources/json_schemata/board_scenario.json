@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Board scenario",
+  "$ref": "components/scenario.json",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "board": {
+          "$ref": "./components/board.json"
+        },
+        "availableMoves": {
+          "$ref": "./components/moves.json"
+        },
+        "canAlsoCapture": {
+          "$ref": "./components/moves.json"
+        }
+      },
+      "required": ["board"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "king_OneAtCentralPosition",
+    "name": "A One king at a central position",
+    "data": {
+      "board": [
+        {
+          "color": "black",
+          "type": "king",
+          "position": "D4"
+        }
+      ],
+      "availableMoves": {
+        "D4": ["C3", "C4", "C5", "D5", "E5", "E4", "E3", "D3"]
+      }
+    }
+  },
+  {
+    "id": "king_OneAtCorner",
+    "name": "A single king at a corner",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "king",
+          "position": "A1"
+        }
+      ],
+      "availableMoves": {
+        "A1": ["A2", "B2", "B1"]
+      }
+    }
+  },
+  {
+    "id": "king_TwoOpposite",
+    "name": "Two kings of opposite color opposite to each other",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "king",
+          "position": "D3"
+        },
+        {
+          "color": "black",
+          "type": "king",
+          "position": "D5"
+        }
+      ],
+      "availableMoves": {
+        "D3": ["C2", "C3", "C4", "E4", "E3", "E2", "D2", "D4"],
+        "D5": ["C4", "C5", "C6", "D4", "D6", "E6", "E5", "E4"]
+      },
+      "canAlsoCapture": {
+        "D3": ["C4", "D4", "E4"],
+        "D5": ["C4", "D4", "E4"]
+      }
+    }
+  },
+  {
+    "id": "king_BlockedBySameColorPieces",
+    "name": "A king blocked by pieces of the same color",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "king",
+          "position": "D4"
+        },
+        {
+          "color": "white",
+          "type": "rook",
+          "position": "C5"
+        },
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "D3"
+        },
+        {
+          "color": "white",
+          "type": "knight",
+          "position": "E4"
+        }
+      ],
+      "availableMoves": {
+        "D4": ["C3", "C4", "D5", "E3", "E5"]
+      }
+    }
+  },
+  {
+    "id": "king_SurroundedByOppositeColorPieces",
+    "name": "A king surrounded by pieces of the opposite color",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "king",
+          "position": "D4"
+        },
+        {
+          "color": "black",
+          "type": "rook",
+          "position": "C3"
+        },
+        {
+          "color": "black",
+          "type": "bishop",
+          "position": "F5"
+        },
+        {
+          "color": "black",
+          "type": "knight",
+          "position": "F7"
+        }
+      ],
+      "availableMoves": {
+        "D4": ["C3", "C4", "C5", "D3", "D5", "E3", "E4", "E5"]
+      },
+      "canAlsoCapture": {
+        "D4": ["C4", "C5", "E5", "E4", "E3", "D3"]
+      }
+    }
+  }
+]

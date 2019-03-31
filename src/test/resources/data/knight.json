@@ -1,0 +1,80 @@
+[
+  {
+    "id": "knight_TwoAtCentralPositions",
+    "name": "Two knights at central positions",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "knight",
+          "position": "D4"
+        },
+        {
+          "color": "black",
+          "type": "knight",
+          "position": "E5"
+        }
+      ],
+      "availableMoves": {
+        "D4": ["C2", "B3", "B5", "C6", "E6", "F5", "F3", "E2"],
+        "E5": ["D3", "C4", "D7", "C6", "F7", "G6", "F3", "G4"]
+      }
+    }
+  },
+  {
+    "id": "knight_TwoAtCorners",
+    "name": "One knight at each corner",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "knight",
+          "position": "A1"
+        },
+        {
+          "color": "white",
+          "type": "knight",
+          "position": "H1"
+        },
+        {
+          "color": "black",
+          "type": "knight",
+          "position": "A8"
+        },
+        {
+          "color": "black",
+          "type": "knight",
+          "position": "H8"
+        }
+      ],
+      "availableMoves": {
+        "A1": ["C2", "B3"],
+        "H1": ["F2", "G3"],
+        "A8": ["C7", "B6"],
+        "H8": ["F7", "G6"]
+      }
+    }
+  },
+  {
+    "id": "knight_CanCaptureEachOther",
+    "name": "Knights that can capture each other",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "knight",
+          "position": "C3"
+        },
+        {
+          "color": "black",
+          "type": "knight",
+          "position": "D5"
+        }
+      ],
+      "availableMoves": {
+        "C3": ["B1", "A2", "A4", "B5", "D5", "E4", "E2", "D1"],
+        "D5": ["C3", "B4", "B6", "C7", "E7", "F6", "F4", "E3"]
+      }
+    }
+  }
+]

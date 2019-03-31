@@ -1,0 +1,120 @@
+[
+  {
+    "id": "pawn_FewAtInitialCentralPositions",
+    "name": "A few pawns at initial central positions",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "D2"
+        },
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "E2"
+        },
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "D7"
+        },
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "E7"
+        }
+      ],
+      "availableMoves": {
+        "D2": ["D3", "D4"],
+        "E2": ["E3", "E4"],
+        "D7": ["D6", "D5"],
+        "E7": ["E6", "E5"]
+      }
+    }
+  },
+  {
+    "id": "pawn_FewAtInitialSidePositions",
+    "name": "A few pawns at initial side positions",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "A2"
+        },
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "H2"
+        },
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "A7"
+        },
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "H7"
+        }
+      ],
+      "availableMoves": {
+        "A2": ["A3", "A4"],
+        "H2": ["H3", "H4"],
+        "A7": ["A6", "A5"],
+        "H7": ["H6", "H5"]
+      }
+    }
+  },
+  {
+    "id": "pawn_CanCaptureEachOther",
+    "name": "Pawns that can capture each other",
+    "data": {
+      "board": [
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "C3"
+        },
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "D4"
+        }
+      ],
+      "availableMoves": {
+        "C3": ["C4", "D4"],
+        "D4": ["D3", "C3"]
+      }
+    }
+  },
+  {
+    "id": "pawn_Promotable",
+    "name": "Promotable pieces",
+    "data": {
+      "board": [
+        {
+          "color": "black",
+          "type": "pawn",
+          "position": "D2"
+        },
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "C7"
+        },
+        {
+          "color": "white",
+          "type": "pawn",
+          "position": "D6"
+        }
+      ],
+      "availableMoves": {
+        "D2": ["D1=B", "D1=N", "D1=Q", "D1=R"],
+        "C7": ["C8=B", "C8=N", "C8=Q", "C8=R"],
+        "D6": ["D7"]
+      }
+    }
+  }
+]
