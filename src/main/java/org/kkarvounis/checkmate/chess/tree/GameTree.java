@@ -1,6 +1,7 @@
 package org.kkarvounis.checkmate.chess.tree;
 
 import org.kkarvounis.checkmate.chess.Color;
+import org.kkarvounis.checkmate.chess.GameState;
 import org.kkarvounis.checkmate.chess.Move;
 import org.kkarvounis.checkmate.chess.board.Board;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,12 +23,12 @@ public class GameTree extends AbstractChessTree {
     @Override
     public Map<String, Object> get() {
         Map<String, Object> tree = new HashMap<>();
-        addNodesToTree(tree, board, startingColor);
+        addNodesToTree(tree, initialState);
 
         return tree;
     }
 
-    private void addNodesToTree(Map<String, Object> tree, Board board, Color playerColor) {
+    private void addNodesToTree(Map<String, Object> tree, GameState gameState) {
         incrementDepth();
 
         if (currentDepth > depth) {
@@ -35,12 +36,12 @@ public class GameTree extends AbstractChessTree {
             return;
         }
 
-        for (Move move : board.detectMoves(playerColor)) {
+        for (Move move : gameState.getMoves()) {
             String key = move.toString();
             Map<String, Object> subTree = new HashMap<>();
 
             tree.put(key, subTree);
-            addNodesToTree(subTree, board.doMove(move), playerColor.opposite());
+            addNodesToTree(subTree, gameState.deriveNewState(move));
         }
 
         decrementDepth();
