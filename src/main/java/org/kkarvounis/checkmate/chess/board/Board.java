@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class Board implements Cloneable, JsonSerializableInterface {
@@ -89,7 +88,7 @@ public class Board implements Cloneable, JsonSerializableInterface {
         return GenericHelper.merge(pieces.get(Color.black), pieces.get(Color.white));
     }
 
-    ArrayList<AbstractPiece> getPieces(Color color) {
+    public ArrayList<AbstractPiece> getPieces(Color color) {
         return pieces.get(color);
     }
 
@@ -136,27 +135,6 @@ public class Board implements Cloneable, JsonSerializableInterface {
 
     public Traverser startFrom(Position position) {
         return traverser.startFrom(position);
-    }
-
-    public ArrayList<Move> detectMoves(Color playerColor) {
-        ArrayList<Move> moves = new ArrayList<>();
-        Iterator<AbstractPiece> it = iterator(playerColor);
-        while (it.hasNext()) {
-            ArrayList<Move> newMoves = it.next().detectMoves(this);
-            moves.addAll(filterLegalMoves(newMoves, playerColor));
-        }
-
-        return moves;
-    }
-
-    private ArrayList<Move> filterLegalMoves(ArrayList<Move> moves, Color playerColor) {
-        return moves
-                .stream()
-                .filter(move -> {
-                    Board newBoard = doMove(move);
-                    return !newBoard.isKingChecked(playerColor);
-                })
-                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Board doMove(Move move) {

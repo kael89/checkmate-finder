@@ -3,7 +3,9 @@ package org.kkarvounis.checkmate.chess;
 import org.kkarvounis.checkmate.GenericHelper;
 import org.kkarvounis.checkmate.chess.piece.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class Move implements Cloneable {
     private static final HashMap<Class, String> PROMOTION_TO_INITIAL = new HashMap<Class, String>() {{
@@ -87,5 +89,15 @@ public class Move implements Cloneable {
 
     public boolean isPromotion() {
         return this.promotion != null;
+    }
+
+    /**
+     * @param list A list of moves
+     * @return A deep copy of the provided list
+     */
+    public static ArrayList<Move> copyList(ArrayList<Move> list) {
+        return list.stream()
+                .map(Move::clone)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

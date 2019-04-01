@@ -4,26 +4,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.kkarvounis.checkmate.GenericHelper;
 import org.kkarvounis.checkmate.chess.Color;
 import org.kkarvounis.checkmate.chess.Move;
 import org.kkarvounis.checkmate.chess.Position;
 import org.kkarvounis.checkmate.chess.piece.AbstractPiece;
 import org.kkarvounis.checkmate.chess.piece.Pawn;
-import org.kkarvounis.checkmate.testing.BoardScenario;
-import org.kkarvounis.checkmate.testing.TestingHelper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class BoardTest {
     private static final String DATA_FILE = "board.json";
@@ -89,31 +83,6 @@ class BoardTest {
     @Test
     void testStartFrom() {
         // TODO implement
-    }
-
-    @ParameterizedTest(name = "{3}")
-    @MethodSource
-    void testDetectMoves(Board board, Color playerColor, ArrayList<Move> expectedMoves, String description) {
-        assertTrue(GenericHelper.equalContents(expectedMoves, board.detectMoves(playerColor)));
-    }
-
-    static ArrayList<Arguments> testDetectMoves() {
-        File dataFile = TestingHelper.getDataFile(DATA_FILE);
-        Iterator<BoardScenario> it = BoardScenario.iterator(dataFile);
-
-        ArrayList<Arguments> data = new ArrayList<>();
-        while (it.hasNext()) {
-            BoardScenario scenario = it.next();
-            for (Map.Entry<Color, ArrayList<Move>> entry : scenario.getAvailableMoves().entrySet()) {
-                Color playerColor = entry.getKey();
-                ArrayList<Move> expectedMoves = entry.getValue();
-                String description = scenario.name + ", " + playerColor.toString() + " plays";
-
-                data.add(arguments(scenario.getBoard(), playerColor, expectedMoves, description));
-            }
-        }
-
-        return data;
     }
 
     @ParameterizedTest
