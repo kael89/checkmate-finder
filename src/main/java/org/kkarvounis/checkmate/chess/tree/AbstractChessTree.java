@@ -1,5 +1,6 @@
 package org.kkarvounis.checkmate.chess.tree;
 
+import org.kkarvounis.checkmate.chess.GameState;
 import org.kkarvounis.checkmate.json.JsonSerializableInterface;
 import org.kkarvounis.checkmate.chess.Color;
 import org.kkarvounis.checkmate.chess.board.Board;
@@ -17,15 +18,13 @@ import java.util.Map;
 abstract public class AbstractChessTree implements JsonSerializableInterface {
     private static final int MAX_DEPTH = 6;
 
-    protected Board board;
-    protected Color startingColor;
+    GameState initialState;
     protected int depth;
-    protected int currentDepth = 0;
+    int currentDepth = 0;
 
     AbstractChessTree(Board board, Color startingColor, int depth) {
 
-        this.board = board;
-        this.startingColor = startingColor;
+        this.initialState = new GameState(board, startingColor);
         this.depth = sanitizeDepth(depth);
     }
 
@@ -35,7 +34,7 @@ abstract public class AbstractChessTree implements JsonSerializableInterface {
 
     @Override
     public String toString() {
-        return startingColor.toString() + " plays first, depth: " + depth;
+        return initialState.getPlayerColor().toString() + " plays first, depth: " + depth;
     }
 
     private int sanitizeDepth(int depth) {

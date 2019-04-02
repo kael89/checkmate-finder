@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
-public class KnightMover implements MoverInterface {
+public class KnightMover extends AbstractMover {
     /**
      * The amount that should be added to a knight's row/column in order
      * to perform one of its available moves
@@ -27,7 +27,17 @@ public class KnightMover implements MoverInterface {
     };
 
     @Override
-    public ArrayList<Move> detectMoves(Board board, AbstractPiece piece) {
+    boolean isBlockedByMove(AbstractPiece piece, Move move) {
+        return false;
+    }
+
+    @Override
+    boolean isUnblockedByMove(AbstractPiece piece, Move move) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<Move> calculateMoves(Board board, AbstractPiece piece) {
         ArrayList<Position> positions = new ArrayList<>();
 
         Position position = piece.getPosition();

@@ -1,12 +1,12 @@
 package org.kkarvounis.checkmate.chess.piece;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.kkarvounis.checkmate.chess.Color;
 import org.kkarvounis.checkmate.chess.Direction;
 import org.kkarvounis.checkmate.chess.Position;
 import org.kkarvounis.checkmate.chess.board.Board;
 import org.kkarvounis.checkmate.chess.piece.Mover.LinearMover;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Iterator;
 
@@ -28,6 +28,6 @@ public class King extends AbstractPiece {
             }
         }
 
-        return  false;
+        return false;
     }
 }

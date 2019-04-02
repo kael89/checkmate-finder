@@ -42,6 +42,10 @@ public class GameState {
         }
     }
 
+    public Color getPlayerColor() {
+        return playerColor;
+    }
+
     public ArrayList<Move> getMoves() {
         if (moves == null) {
             calculateMoves();
@@ -80,7 +84,7 @@ public class GameState {
         GameState newState = new GameState(board.doMove(move), playerColor.opposite());
 
         newState.movesByPosition = copyMovesByPosition(movesByPosition);
-        newState.movesByPosition.remove(move.piece.getPosition());
+        newState.movesByPosition.remove(move.getSource());
 
         newState.lastPlayedMoves = Move.copyList(lastPlayedMoves);
         newState.lastPlayedMoves.add(move);

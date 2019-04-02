@@ -1,11 +1,11 @@
 package org.kkarvounis.checkmate.chess.piece;
 
+import org.kkarvounis.checkmate.chess.piece.Mover.AbstractMover;
 import org.kkarvounis.checkmate.json.JsonSerializableInterface;
 import org.kkarvounis.checkmate.chess.Color;
 import org.kkarvounis.checkmate.chess.Move;
 import org.kkarvounis.checkmate.chess.Position;
 import org.kkarvounis.checkmate.chess.board.Board;
-import org.kkarvounis.checkmate.chess.piece.Mover.MoverInterface;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.ArrayList;
 
-@JsonAutoDetect(isGetterVisibility= Visibility.NONE)
+@JsonAutoDetect(isGetterVisibility = Visibility.NONE)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
         @Type(value = Bishop.class, name = "bishop"),
@@ -27,9 +27,9 @@ import java.util.ArrayList;
 abstract public class AbstractPiece implements Cloneable, JsonSerializableInterface {
     protected Color color;
     protected Position position;
-    protected MoverInterface mover;
+    protected AbstractMover mover;
 
-    AbstractPiece(Color color, Position position, MoverInterface mover) {
+    AbstractPiece(Color color, Position position, AbstractMover mover) {
         this.color = color;
         this.position = position;
         this.mover = mover;
@@ -117,6 +117,10 @@ abstract public class AbstractPiece implements Cloneable, JsonSerializableInterf
 
     public ArrayList<Move> detectMoves(Board board) {
         return mover.detectMoves(board, this);
+    }
+
+    public ArrayList<Move> detectMoves(Board board, ArrayList<Move> previousMoves, ArrayList<Move> lastPlayedMoves) {
+        return mover.detectMoves(board, this, previousMoves, lastPlayedMoves);
     }
 
     public ArrayList<Move> getMovesFromPositions(ArrayList<Position> positions) {

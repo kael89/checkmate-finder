@@ -10,7 +10,7 @@ import org.kkarvounis.checkmate.chess.piece.AbstractPiece;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LinearMover implements MoverInterface {
+public class LinearMover extends AbstractMover {
     private Direction[] directions;
     private int range;
 
@@ -19,8 +19,18 @@ public class LinearMover implements MoverInterface {
         this.range = range;
     }
 
-    @Override
-    public ArrayList<Move> detectMoves(Board board, AbstractPiece piece) {
+    boolean isBlockedByMove(AbstractPiece piece, Move move) {
+        Direction directionToTarget = ChessHelper.detectDirection(piece.getPosition(), move.target);
+        return hasMoveDirection(directionToTarget);
+    }
+
+    boolean isUnblockedByMove(AbstractPiece piece, Move move) {
+        Direction directionToSource = ChessHelper.detectDirection(piece.getPosition(), move.getSource());
+        // TODO this has been calculated again in shouldCalculateMoves
+        return hasMoveDirection(directionToSource) && !isBlockedByMove(piece, move);
+    }
+
+    ArrayList<Move> calculateMoves(Board board, AbstractPiece piece) {
         ArrayList<Position> positions = board
                 .startFrom(piece.getPosition())
                 .toDirections(directions)

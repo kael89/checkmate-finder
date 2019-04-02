@@ -11,7 +11,7 @@ import org.kkarvounis.checkmate.chess.piece.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class PawnMover implements MoverInterface {
+public class PawnMover extends AbstractMover {
     private static final Class[] promotionClasses = {
             Bishop.class,
             Knight.class,
@@ -28,21 +28,32 @@ public class PawnMover implements MoverInterface {
             startingRow = 1;
             promotionRow = 6;
             moveDirection = Direction.up;
-            captureDirections = new Direction[] {
+            captureDirections = new Direction[]{
                     Direction.up_left, Direction.up_right
             };
         } else {
             startingRow = 6;
             promotionRow = 1;
             moveDirection = Direction.down;
-            captureDirections = new Direction[] {
+            captureDirections = new Direction[]{
                     Direction.down_left, Direction.down_right
             };
         }
     }
 
+    // TODO can optimize here
     @Override
-    public ArrayList<Move> detectMoves(Board board, AbstractPiece piece) {
+    boolean isBlockedByMove(AbstractPiece piece, Move move) {
+        return true;
+    }
+
+    @Override
+    boolean isUnblockedByMove(AbstractPiece piece, Move move) {
+        return true;
+    }
+
+    @Override
+    public ArrayList<Move> calculateMoves(Board board, AbstractPiece piece) {
         ArrayList<Move> moves = piece.getMovesFromPositions(detectMovePositions(board, piece));
         if (!isNextMoveAPromotion(piece.getPosition())) {
             return moves;

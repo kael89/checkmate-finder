@@ -1,15 +1,15 @@
 package org.kkarvounis.checkmate.chess.piece;
 
-import org.kkarvounis.checkmate.chess.Color;
-import org.kkarvounis.checkmate.chess.Position;
-import org.kkarvounis.checkmate.chess.piece.Mover.MoverInterface;
-import org.kkarvounis.checkmate.chess.piece.Mover.PawnMover;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.kkarvounis.checkmate.chess.Color;
+import org.kkarvounis.checkmate.chess.Position;
+import org.kkarvounis.checkmate.chess.piece.Mover.AbstractMover;
+import org.kkarvounis.checkmate.chess.piece.Mover.PawnMover;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ class AbstractPieceTest {
     private static final Color COLOR = Color.black;
     private static final String POSITION_NAME = "H4";
     private static final Position POSITION = new Position(POSITION_NAME);
-    private static final MoverInterface MOVER = new PawnMover(COLOR);
+    private static final AbstractMover MOVER = new PawnMover(COLOR);
 
     private AbstractPiece piece;
 

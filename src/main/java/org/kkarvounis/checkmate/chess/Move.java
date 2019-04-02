@@ -83,6 +83,10 @@ public class Move implements Cloneable {
         return result;
     }
 
+    public Position getSource() {
+        return piece.getPosition();
+    }
+
     public void promotionTo(Class<AbstractPiece> promotion) {
         this.promotion = promotion;
     }
