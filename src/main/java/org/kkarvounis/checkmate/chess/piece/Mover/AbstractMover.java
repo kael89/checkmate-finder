@@ -22,7 +22,7 @@ public abstract class AbstractMover {
     }
 
     private boolean shouldCalculateMoves(AbstractPiece piece, ArrayList<Move> lastPlayedMoves) {
-        if (lastPlayedMoves.size() > 2) {
+        if (lastPlayedMoves.size() < 2) {
             return true;
         }
 

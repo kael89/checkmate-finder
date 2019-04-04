@@ -2,6 +2,7 @@ package org.kkarvounis.checkmate.chess.tree;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.kkarvounis.checkmate.chess.Color;
+import org.kkarvounis.checkmate.chess.GameState;
 import org.kkarvounis.checkmate.chess.GameStatus;
 import org.kkarvounis.checkmate.chess.Move;
 import org.kkarvounis.checkmate.chess.board.Board;
@@ -13,11 +14,11 @@ import java.util.stream.Collectors;
 
 class NodeData {
     Node node;
-    Board board;
+    GameState state;
 
-    NodeData(Node node, Board board) {
+    NodeData(Node node, GameState state) {
         this.node = node;
-        this.board = board;
+        this.state = state;
     }
 }
 
@@ -85,15 +86,15 @@ public class ForcedMateTree extends AbstractChessTree {
     private void initTree() {
         resetCurrentNodeData();
 
-        ArrayList<Move> moves = board.detectMoves(startingColor);
-        moves = filterCurrentMoves(board, moves);
+        ArrayList<Move> moves = initialState.getMoves();
+        filterCurrentMoves(initialState, moves);
 
         ArrayList<Node> treeRoots = new ArrayList<>();
         for (Move move : moves) {
             Node root = createNode(move);
             treeRoots.add(root);
 
-            NodeData nodeData = new NodeData(root, board.doMove(move));
+            NodeData nodeData = new NodeData(root, initialState.deriveNewState(move));
             addCurrentNodeData(root, nodeData);
         }
 
@@ -104,18 +105,13 @@ public class ForcedMateTree extends AbstractChessTree {
         currentNodeData = new HashMap<>();
     }
 
-    private ArrayList<Move> filterCurrentMoves(Board board, ArrayList<Move> moves) {
-        return moves
-                .stream()
-                .filter(move -> !isLastMoveOfStartingPlayer() || isEnemyForceMated(board, move, currentPlayerColor))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    private boolean isEnemyForceMated(Board board, Move move, Color playerColor) {
-        Color enemyColor = playerColor.opposite();
-        Board newBoard = board.doMove(move);
-
-        return isPlayerCheckMated(newBoard, newBoard.detectMoves(enemyColor), enemyColor);
+    private void filterCurrentMoves(GameState state, ArrayList<Move> moves) {
+        if (isLastMoveOfStartingPlayer()) {
+            moves
+                    .stream()
+                    .filter(move -> state.deriveNewState(move).isCheckMate())
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
     }
 
     private boolean isPlayerCheckMated(Board board, ArrayList<Move> playerMoves, Color playerColor) {
@@ -145,9 +141,9 @@ public class ForcedMateTree extends AbstractChessTree {
             for (MoveData moveData : moveDataEntry.getValue()) {
                 for (Move move : moveData.moves) {
                     Node newNode = addChildNode(moveData.nodeData.node, move);
-                    Board newBoard = moveData.nodeData.board.doMove(move);
+                    GameState newState = moveData.nodeData.state.deriveNewState(move);
 
-                    NodeData newNodeData = new NodeData(newNode, newBoard);
+                    NodeData newNodeData = new NodeData(newNode, newState);
                     addCurrentNodeData(root, newNodeData);
                 }
             }
@@ -168,11 +164,10 @@ public class ForcedMateTree extends AbstractChessTree {
             moveData.put(root, new ArrayList<>());
             for (NodeData nodeData : nodeDataPerRoot) {
                 Node node = nodeData.node;
-                Board board = nodeData.board;
+                GameState state = nodeData.state;
+                ArrayList<Move> moves = state.getMoves();
 
-                ArrayList<Move> moves = board.detectMoves(currentPlayerColor);
-
-                if (isForcedMate && !isPlayerCheckMated(board, moves, currentPlayerColor)) {
+                if (isForcedMate && !state.isCheckMate()) {
                     isForcedMate = false;
                     if (forcedMateRoots.size() > 0) {
                         // Skip to next root since quicker forced mates have been found,
@@ -181,12 +176,12 @@ public class ForcedMateTree extends AbstractChessTree {
                     }
                 }
 
-                if (shouldDeletePreviousMove(board, moves)) {
+                if (shouldDeletePreviousMove(state)) {
                     deletePreviousMove(node);
                     continue;
                 }
 
-                moves = filterCurrentMoves(board, moves);
+                filterCurrentMoves(state, moves);
                 if (shouldDeleteRoot(moves)) {
                     moveData.remove(root);
                     tree.deleteRoot(root);
@@ -205,11 +200,9 @@ public class ForcedMateTree extends AbstractChessTree {
         return cleanMoveDataAndRoots(moveData, forcedMateRoots);
     }
 
-    private boolean shouldDeletePreviousMove(Board board, ArrayList<Move> moves) {
+    private boolean shouldDeletePreviousMove(GameState state) {
         ArrayList<GameStatus> acceptableStatuses = getAcceptableGameStatuses();
-        GameStatus status = deduceGameStatus(board, moves, currentPlayerColor);
-
-        return !acceptableStatuses.contains(status);
+        return !acceptableStatuses.contains(state.getStatus());
     }
 
     private boolean shouldDeleteRoot(ArrayList<Move> moves) {

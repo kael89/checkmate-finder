@@ -27,6 +27,8 @@ public class GameState {
     }
 
     private void initKings() {
+        kings = new HashMap<>();
+        kingCheckedByColor = new HashMap<>();
         initKing(Color.black);
         initKing(Color.white);
     }
@@ -54,8 +56,30 @@ public class GameState {
         return moves;
     }
 
+    public GameStatus getStatus() {
+        if (status == null) {
+            calculateStatus();
+        }
+
+        return status;
+    }
+
+    private void calculateStatus() {
+        if (getMoves().size() > 0) {
+            status = GameStatus.playing;
+        } else {
+            status = isKingChecked(playerColor) ? GameStatus.checkmate : GameStatus.draw;
+        }
+    }
+
+    public boolean isCheckMate() {
+        return getStatus().equals(GameStatus.checkmate);
+    }
+
     private void calculateMoves() {
         moves = new ArrayList<>();
+        movesByPosition = new HashMap<>();
+        lastPlayedMoves = new ArrayList<>();
 
         for (AbstractPiece piece : board.getPieces(playerColor)) {
             Position position = piece.getPosition();
