@@ -60,7 +60,7 @@ public class ForcedMateTree extends AbstractChessTree {
     public Map<String, Object> get() {
         resetDepth();
 
-        for (int i = 0; i < depth; i++) {
+        for (int i = 0; i < depth - 1; i++) {
             addNewTreeLevel();
             if (currentNodeData.size() == 0) {
                 break;
@@ -107,10 +107,7 @@ public class ForcedMateTree extends AbstractChessTree {
 
     private void filterCurrentMoves(GameState state, ArrayList<Move> moves) {
         if (isLastMoveOfStartingPlayer()) {
-            moves
-                    .stream()
-                    .filter(move -> state.deriveNewState(move).isCheckMate())
-                    .collect(Collectors.toCollection(ArrayList::new));
+            moves.removeIf(move -> !state.deriveNewState(move).isCheckMate());
         }
     }
 

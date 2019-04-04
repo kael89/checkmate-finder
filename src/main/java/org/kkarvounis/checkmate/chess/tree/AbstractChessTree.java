@@ -74,8 +74,7 @@ abstract public class AbstractChessTree implements JsonSerializableInterface {
     }
 
     boolean isLastMoveOfStartingPlayer() {
-        int offset = depth % 2 == 0 ? 1 : 0;
-        return currentDepth == depth - offset;
+        return currentDepth == depth - 1;
     }
 
     abstract public Map<String, Object> get();
