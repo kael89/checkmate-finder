@@ -13,7 +13,7 @@ Prerequisites:
 - Maven
 
 ```
-mvn clean compile
+mvn clean package
 java -jar target\chasemate-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
