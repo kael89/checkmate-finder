@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.kkarvounis</groupId>
-    <artifactId>chasemate</artifactId>
+    <artifactId>checkmatefinder</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
@@ -14,7 +14,7 @@
         <tomcat.version>7.0.57</tomcat.version>
     </properties>
     <build>
-        <finalName>chasemate</finalName>
+        <finalName>checkmatefinder</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -33,10 +33,10 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>chasemate-${project.version}</finalName>
+                    <finalName>checkmatefinder-${project.version}</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>org.kkarvounis.chasemate.app.App</mainClass>
+                            <mainClass>org.kkarvounis.checkmatefinder.app.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

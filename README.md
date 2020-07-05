@@ -1,8 +1,8 @@
-# Chasemate
+# Chekmate Finder
 
-Back-end of https://chasemate.app/
+Back-end of https://killtheking.netlify.app
 
-Front-end repository: [chasemate-ui](https://github.com/kael89/chasemate-ui)
+Front-end repository: [kill-the-king](https://github.com/kael89/kill-the-king)
 
 ## Installation
 
@@ -14,7 +14,7 @@ Prerequisites:
 
 ```
 mvn clean package
-java -jar target\chasemate-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -jar target\checkmatefinder-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 The server should now be running at http://localhost:8080
